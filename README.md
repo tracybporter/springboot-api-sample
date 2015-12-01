@@ -1,6 +1,8 @@
 ### Overview
 This is my first Spring Boot app started from the lazybones template, which is SUPER cool.
+
 I have several goals:
+
 1. Get a flavor for Spring Boot.
 1. Understand if an API (primarily REST) application can easily be test-driven (at least as easy as a spring mvc app)?
     1. What are the challenges?
