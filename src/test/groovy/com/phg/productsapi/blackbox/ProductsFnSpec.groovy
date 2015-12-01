@@ -61,8 +61,8 @@ class ProductsFnSpec extends Specification {
          println '*********** data: ' + data
          resp.setData(data)
          String headers = ""
-         resp.headers.each {
-            headers = headers + "${it.name} : ${it.value}\n"
+         resp.headers.each {h ->
+            headers = headers + "${h.name} : ${h.value}\n"
          }
          return resp
       }
@@ -72,10 +72,9 @@ class ProductsFnSpec extends Specification {
       then:
       response.status == 400
       response.headers.'Content-Type'.toString() == 'application/json;charset=UTF-8'
-      response.status == 400
-      response.error == 'Bad Request'
-      response.message == 'Bad Request for UPC: 33'
-      response.timestamp
-      response.exception
+      response.data.status == 400
+      response.data.error == 'Bad Request'
+      response.data.message == 'Bad Request for UPC: 33'
+      response.data.timestamp
    }
 }
