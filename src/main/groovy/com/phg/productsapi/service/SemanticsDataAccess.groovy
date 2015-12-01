@@ -28,7 +28,10 @@ class SemanticsDataAccess {
          Map result = response.data.results[0]
          return new SemanticProduct(name: result.name, price: new BigDecimal(result.price))
       } catch (HttpResponseException httpException) {
-         throw new DataAccessException(statusCode: httpException.statusCode, message: httpException.localizedMessage + " for this UPC code: ${upc}", dataAccessSource: dataHost)
+         throw new DataAccessException(
+               statusCode: httpException.statusCode,
+               message: httpException.localizedMessage + " for UPC: ${upc}",
+               dataAccessSource: dataHost)
       }
    }
 }

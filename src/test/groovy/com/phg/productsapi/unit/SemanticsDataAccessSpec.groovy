@@ -54,7 +54,7 @@ class SemanticsDataAccessSpec extends Specification {
       then:
       mockRestClient.get(_) >> { throw new HttpResponseException(400, 'Bad Request') }
       def e = thrown(DataAccessException)
-      e.message == 'Bad Request for this UPC code: 7777'
+      e.message == 'Bad Request for UPC: 7777'
       e.statusCode == 400
       e.dataAccessSource == 'api.semantics3.com'
    }
