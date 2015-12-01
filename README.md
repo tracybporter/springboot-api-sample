@@ -1,14 +1,15 @@
 ### Overview
-This is my first Spring Boot app started from the lazybones template, which is SUPER cool.
+This is my first Spring Boot app started from the lazybones template.
 
 I have several goals:
 
 1. Get a flavor for Spring Boot.
-1. Understand if an API (primarily REST) application can easily be test-driven (at least as easy as a spring mvc app)?
+1. Understand if an API (primarily REST) application can easily be test-driven (at least as easy as a spring mvc app)
     1. What are the challenges?
 1. Create a code sample to illustrate my approach to application development. Primarily this means test-first at the black box and unit boundaries.
 
 #### Observations
+1. Lazybones is a sweet tool! I found it when I was digging around ratpack a while ago.
 1. Application Properties testing challenges
     1. Overwriting application properties at the unit level is not straightforward. I've worked in Grails and Holders.flagconfig is easily maninpulated in unit tests.
     1. This is NOT the case with Spring Boot. Though the testing documentation has a brief statement about how delightful EnvironmentTestUtils is to use.
@@ -25,14 +26,14 @@ I have several goals:
    1. Responds with Server Error message and code when cannot connect to external system.
    1. Logs meaningful error messages
 1. Find by UPC allows more than 100 requests per day
-    1. Put api key and secret in secure place
+    1. Use the semantic secret in the API request
 1. /product/{id} returns a document when identifier exists
-1. Commits on the master branch result in a CI build
-    1. Sematic api key and secret are available in secure way
-1. Blackbox tests run against an external version of the application
+1. Epic - Create a Build Pipeline
+    1. Commits on the master branch result in a CI build
+    1. Blackbox tests run against an external version of the application
 1. UPC in response document is a number (not a string)
 1. Can disable any endpoint at server start up
-1. EPIC - Serve more product data
+1. EPIC - Serve more product data (add a local data store)
     1. Create data store with core product data
     1. Application fails if not avaiable
     1. etc
