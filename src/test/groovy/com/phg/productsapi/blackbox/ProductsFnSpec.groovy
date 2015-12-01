@@ -55,7 +55,17 @@ class ProductsFnSpec extends Specification {
       response.data.results[0].prices.msrp >= new BigDecimal('9.99')
    }
 
-   def 'bad UPC results in a bad request reponse'(){
+   def 'bad UPC results in a bad request reponse'() {
+      given:
+      restClient.handler.failure = { resp, data ->
+         println '*********** data: ' + data
+         resp.setData(data)
+         String headers = ""
+         resp.headers.each {
+            headers = headers + "${it.name} : ${it.value}\n"
+         }
+         return resp
+      }
       when:
       def response = restClient.get(path: "/v1/products", query: [upc: 33])
 
