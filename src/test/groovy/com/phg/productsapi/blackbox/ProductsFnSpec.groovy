@@ -39,7 +39,6 @@ class ProductsFnSpec extends Specification {
 
    def 'find products by UPC returns list of products'() {
       when:
-      println 'about to run test'
       def response = restClient.get(path: "/v1/products", query: [upc: 786936175271])
 
       then:
@@ -54,5 +53,28 @@ class ProductsFnSpec extends Specification {
       response.data.results[0].descriptions.display == 'My Neighbor Totoro'
       response.data.results[0].links.self.startsWith 'http://localhost:8080/v1/products/'
       response.data.results[0].prices.msrp >= new BigDecimal('9.99')
+   }
+
+   def 'bad UPC results in a bad request reponse'() {
+      given:
+      restClient.handler.failure = { resp, data ->
+         println '*********** data: ' + data
+         resp.setData(data)
+         String headers = ""
+         resp.headers.each {h ->
+            headers = headers + "${h.name} : ${h.value}\n"
+         }
+         return resp
+      }
+      when:
+      def response = restClient.get(path: "/v1/products", query: [upc: 33])
+
+      then:
+      response.status == 400
+      response.headers.'Content-Type'.toString() == 'application/json;charset=UTF-8'
+      response.data.status == 400
+      response.data.error == 'Bad Request'
+      response.data.message == 'Bad Request for UPC: 33'
+      response.data.timestamp
    }
 }

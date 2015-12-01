@@ -1,8 +1,10 @@
 package com.phg.productsapi.unit
 
+import com.phg.productsapi.DataAccessException
 import com.phg.productsapi.controller.ProductsController
 import com.phg.productsapi.domain.PageResult
 import com.phg.productsapi.service.ProductsService
+import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
@@ -28,7 +30,7 @@ class ProductsControllerSpec extends Specification {
 
       then:
       1 * mockProductsService.retrieveAll() >> new PageResult()
-      response.status == OK.value()
+      response.status == OK.value
    }
 
    def 'products controller delegates to the service for query by UPC value'() {
@@ -37,6 +39,18 @@ class ProductsControllerSpec extends Specification {
 
       then:
       1 * mockProductsService.findByUpc(111) >> new PageResult()
-      response.status == OK.value()
+      response.status == OK.value
+   }
+
+   def 'returns Bad Request - 400 response when DataAccessException'() {
+      when:
+      def response = mockMvc.perform(get("/v1/products?upc=881")).andReturn().response
+
+      then:
+      mockProductsService.findByUpc(881) >> {
+         throw new DataAccessException(statusCode: 92, message: 'something bad happended')
+      }
+      response.status == 92
+      response.errorMessage == 'something bad happended'
    }
 }
