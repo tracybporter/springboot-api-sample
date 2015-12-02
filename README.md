@@ -10,12 +10,6 @@ I have several goals:
 
 #### Observations
 1. Lazybones is a sweet tool! I found it when I was digging around ratpack a while ago.
-1. Application Properties testing challenges
-    1. Overwriting application properties at the unit level is not straightforward. I've worked in Grails and Holders.flagconfig is easily maninpulated in unit tests.
-    1. This is NOT the case with Spring Boot. Though the testing documentation has a brief statement about how delightful EnvironmentTestUtils is to use.
-    1. In the name of creating working software in a reasonable amount of time I chose to use a system property. Unit and blackbox testing then was simple.
-    1. It was a bit of a bump trying to get the system property entered at the gradle command line passed through to the JVM.
-
 
 ### Work In Progress
 #### Stories
