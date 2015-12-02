@@ -12,15 +12,10 @@ import org.springframework.stereotype.Component
 class SemanticsDataAccess {
    @Value('${semantics3.apikey}')
    public String apiKey
-
-   RESTClient restClient
-   URI uri
    String dataHost = 'api.semantics3.com'
 
-   public SemanticsDataAccess() {
-      restClient = new RESTClient()
-      uri = new URI(scheme: 'https', host: dataHost, path: '/test/v1/products')
-   }
+   RESTClient restClient= new RESTClient()
+   URI uri= new URI(scheme: 'https', host: dataHost, path: '/test/v1/products')
 
    SemanticProduct queryByUpc(long upc) {
       restClient.headers = [api_key: apiKey]
