@@ -10,9 +10,6 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 class SemanticsDataAccessSpec extends Specification {
-   static {
-      System.properties.setProperty 'semantics3.apikey', 'a11111'
-   }
    @Shared
    SemanticsDataAccess dataAccess
    @Shared
@@ -26,6 +23,7 @@ class SemanticsDataAccessSpec extends Specification {
 
    def 'queries semantic test environment with strange encoded query parameters and api key in header'() {
       given:
+      dataAccess.apiKey = 'a11111'
       long upc = 999999999999
       URI uri = new URI(scheme: 'https', host: 'api.semantics3.com', path: '/test/v1/products')
       uri.query = URLEncoder.encode('q={"upc":"' + upc + '","fields":["name","price"]}', "UTF-8")
