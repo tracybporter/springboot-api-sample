@@ -5,20 +5,17 @@ import com.phg.productsapi.thirdparty.SemanticProduct
 import groovyx.net.http.HttpResponseDecorator
 import groovyx.net.http.RESTClient
 import org.apache.http.client.HttpResponseException
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
 @Component
 class SemanticsDataAccess {
-   RESTClient restClient
-   URI uri
-   String apiKey
+   @Value('${semantics3.apikey}')
+   public String apiKey
    String dataHost = 'api.semantics3.com'
 
-   public SemanticsDataAccess() {
-      apiKey = System.properties.'semantics3.apikey'
-      restClient = new RESTClient()
-      uri = new URI(scheme: 'https', host: dataHost, path: '/test/v1/products')
-   }
+   RESTClient restClient= new RESTClient()
+   URI uri= new URI(scheme: 'https', host: dataHost, path: '/test/v1/products')
 
    SemanticProduct queryByUpc(long upc) {
       restClient.headers = [api_key: apiKey]

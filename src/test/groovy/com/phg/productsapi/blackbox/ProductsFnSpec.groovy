@@ -67,14 +67,17 @@ class ProductsFnSpec extends Specification {
          return resp
       }
       when:
-      def response = restClient.get(path: "/v1/products", query: [upc: 33])
+      def response = restClient.get(path: "/v1/products", query: [upc: badUpc])
 
       then:
       response.status == 400
       response.headers.'Content-Type'.toString() == 'application/json;charset=UTF-8'
       response.data.status == 400
       response.data.error == 'Bad Request'
-      response.data.message == 'Bad Request for UPC: 33'
+      response.data.message == "Bad Request for UPC: ${badUpc}"
       response.data.timestamp
+
+      where:
+      badUpc << [333, 17]
    }
 }
