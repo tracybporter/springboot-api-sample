@@ -1,3 +1,15 @@
+import com.wiredforcode.gradle.spawn.*
+
+buildscript {
+   repositories {
+      mavenCentral()
+      maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
+   }
+   dependencies {
+      classpath 'com.wiredforcode:gradle-spawn-plugin:0.6.0'
+   }
+}
+
 dependencies {
    testCompile "org.springframework.boot:spring-boot-starter-test"
    testCompile "org.springframework:spring-test"
@@ -19,7 +31,7 @@ sourceSets {
    }
 }
 
-task runAcceptance(type: Test) {
+task runAcceptance(type: Test, dependsOn: ['startMockServer']) {
    description = 'Runs the acceptance tests'
    systemProperties System.properties
    group = 'verification'
@@ -27,7 +39,16 @@ task runAcceptance(type: Test) {
    classpath = sourceSets.acceptance.runtimeClasspath
    reports.junitXml.destination = 'build/acceptance-results'
    reports.html.destination = 'build/reports/acceptance'
-   dependsOn(test)
 }
 
 test.finalizedBy runAcceptance
+
+task startMockServer(type: SpawnProcessTask, dependsOn: 'assemble') {
+   description = 'Starting the external mock server'
+   command "java -jar src/acceptance/resources/stubby4j-3.3.0.jar -d src/acceptance/resources/sample-mock-server.yml"
+   ready 'Jetty successfully started'
+}
+
+task stopMockServer(type: KillProcessTask)
+
+runAcceptance.finalizedBy stopMockServer
