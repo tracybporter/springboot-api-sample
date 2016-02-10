@@ -1,4 +1,4 @@
-package com.phg.productsapi.blackbox
+package com.phg.productsapi
 
 import com.phg.productsapi.MainApplication
 import groovyx.net.http.RESTClient
@@ -11,7 +11,7 @@ import spock.lang.Specification
 @ContextConfiguration(classes = MainApplication.class, loader = SpringApplicationContextLoader.class)
 @WebAppConfiguration
 @IntegrationTest
-class RootFnSpec extends Specification {
+class RootAccSpec extends Specification {
    def "default root response from lazybones sample"() {
       given:
       RESTClient restClient = new RESTClient('http://localhost:8080')
@@ -23,6 +23,5 @@ class RootFnSpec extends Specification {
       response.status == 200
       response.headers.'Content-Type'.toString() == 'application/json;charset=UTF-8'
       response.data.message == 'Hello World'
-
    }
 }
