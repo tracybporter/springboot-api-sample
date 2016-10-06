@@ -12,26 +12,21 @@ import javax.servlet.http.HttpServletResponse
 @RestController
 @RequestMapping(value = "/v1/products")
 class ProductsController {
-   ProductsService service
+    ProductsService service
 
-   @Autowired
-   public ProductsController(ProductsService productsService) {
-      this.service = productsService
-   }
+    @Autowired
+    public ProductsController(ProductsService productsService) {
+        this.service = productsService
+    }
 
-   @RequestMapping(method = RequestMethod.GET)
-   public PageResult getProducts() {
-      service.retrieveAll()
-   }
+    @RequestMapping(method = RequestMethod.GET, params = "upc")
+    public PageResult find(@RequestParam("upc") long upcId) {
+        service.findByUpc(upcId)
+    }
 
-   @RequestMapping(method = RequestMethod.GET, params = "upc")
-   public PageResult find(@RequestParam("upc") long upcId) {
-      service.findByUpc(upcId)
-   }
-
-   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-   @ExceptionHandler(DataAccessException)
-   DataAccessException dataAccessIssue(DataAccessException dataAccessException, HttpServletResponse response) {
-      response.sendError(dataAccessException.statusCode, dataAccessException.message)
-   }
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ExceptionHandler(DataAccessException)
+    DataAccessException dataAccessIssue(DataAccessException dataAccessException, HttpServletResponse response) {
+        response.sendError(dataAccessException.statusCode, dataAccessException.message)
+    }
 }

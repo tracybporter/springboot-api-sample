@@ -2,7 +2,7 @@ package com.phg.productsapi.domain
 
 import groovy.transform.EqualsAndHashCode
 
-@EqualsAndHashCode(includeFields = true)
+@EqualsAndHashCode()
 class PageResult {
    Metadata metadata
    List results
@@ -13,12 +13,12 @@ class PageResult {
    }
 }
 
-@EqualsAndHashCode(includeFields = true)
+@EqualsAndHashCode()
 class Metadata {
    ResultSet resultSet
 }
 
-@EqualsAndHashCode(includeFields = true)
+@EqualsAndHashCode()
 class ResultSet {
    int count
    int offset = 0

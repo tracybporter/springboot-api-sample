@@ -1,15 +1,33 @@
 ### Overview
 This is my first Spring Boot app started from the lazybones template.
 
-I have several goals:
-
+Initial Goals (2015):
 1. Get a flavor for Spring Boot.
 1. Understand if an API (primarily REST) application can easily be test-driven (at least as easy as a spring mvc app)
     1. What are the challenges?
 1. Create a code sample to illustrate my approach to application development. Primarily this means test-first at the black box and unit boundaries.
 
+Secondary goals (2016):
+I have now built several Spring Boot RESTful web services.
+1. Incorporate stubby4j for local and ci development to speed testing and reduce dependencies on external APIs during development
+1. Enhance gradle build to manage application version and create a continuous deployment pipeline
+
 #### Observations
 1. Lazybones is a sweet tool! I found it when I was digging around ratpack a while ago.
+
+### To Run
+1. Clone
+1. Create account and aquire and Api Key from https://developer.walmartlabs.com/
+1. terminal: `gradle clean -Dwalmartlabs.apikey={your-api-key} test`
+1. terminal: `gradle clean -Dsemantics3.apikey={your-api-key} run`
+1. Configure intellij for running the application:
+    1. Preferences -> Build -> Tools -> Gradle - Gradle VM Options
+
+### References
+1. White House API Standards informed response wrapper design: https://github.com/WhiteHouse/api-standards
+1. Request product by UPC API design: http://stackoverflow.com/questions/20381976/rest-api-design-getting-a-resource-through-rest-with-different-parameters-but
+1. Spring Boot -
+
 
 ### Work In Progress
 #### Stories
@@ -33,6 +51,8 @@ I have several goals:
     1. etc
 
 #### Done
+1. Replace semantics as the 3rd party with walmart
+    1. Walmart api is simpler to use and maintain.
 1. Move semantics api key to system property
    1. System properties pass through gradle to JVM
    1. Readme instructions for running
@@ -44,17 +64,3 @@ I have several goals:
    1. Learn spring boot default rendering
 1. Find the lazybones template
 1. Response product should have descriptions (plural)
-
-### To Run
-1. Clone
-1. Create account and aquire and Api Key from https://www.semantics3.com/
-    1. OR contact me and I will share mine.
-1. terminal: `gradle -Dsemantics3.apikey={your-api-key} test`
-1. terminal: `gradle -Dsemantics3.apikey={your-api-key} run`
-1. Configure intellij for running the application:
-    1. Preferences -> Build -> Tools -> Gradle - Gradle VM Options
-
-### References
-1. White House API Standards informed response wrapper design: https://github.com/WhiteHouse/api-standards
-1. Request product by UPC API design: http://stackoverflow.com/questions/20381976/rest-api-design-getting-a-resource-through-rest-with-different-parameters-but
-1. Spring Boot -

@@ -1,4 +1,4 @@
-package com.phg.productsapi.unit
+package com.phg.productsapi
 
 import com.phg.productsapi.domain.PageResult
 import spock.lang.Specification

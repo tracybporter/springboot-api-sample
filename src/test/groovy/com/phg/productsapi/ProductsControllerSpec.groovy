@@ -1,10 +1,8 @@
-package com.phg.productsapi.unit
+package com.phg.productsapi
 
-import com.phg.productsapi.DataAccessException
 import com.phg.productsapi.controller.ProductsController
 import com.phg.productsapi.domain.PageResult
 import com.phg.productsapi.service.ProductsService
-import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
@@ -22,15 +20,6 @@ class ProductsControllerSpec extends Specification {
       mockProductsService = Mock(ProductsService.class)
       productsController.service = mockProductsService;
       mockMvc = standaloneSetup(productsController).build()
-   }
-
-   def 'products controller delegates to the service for the list of products'() {
-      when:
-      def response = mockMvc.perform(get("/v1/products")).andReturn().response
-
-      then:
-      1 * mockProductsService.retrieveAll() >> new PageResult()
-      response.status == OK.value
    }
 
    def 'products controller delegates to the service for query by UPC value'() {

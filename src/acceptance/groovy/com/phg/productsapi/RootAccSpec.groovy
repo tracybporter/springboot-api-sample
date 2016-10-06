@@ -1,6 +1,5 @@
 package com.phg.productsapi
 
-import com.phg.productsapi.MainApplication
 import groovyx.net.http.RESTClient
 import org.springframework.boot.test.IntegrationTest
 import org.springframework.boot.test.SpringApplicationContextLoader
