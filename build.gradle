@@ -1,51 +1,50 @@
-apply plugin: "groovy"
-apply plugin: "spring-boot"
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
 apply plugin: 'idea'
-apply plugin: "application"
+apply plugin: 'application'
 
-sourceCompatibility = "1.6"
-targetCompatibility = "1.6"
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
-version = "${version}"
-group = "${group}"
-mainClassName = "com.phg.productsapi.MainApplication"
+version = '${version}'
+group = '${group}'
+mainClassName = 'com.phg.productsapi.MainApplication'
 
 buildscript {
-   ext {
-      springBootVersion = '1.0.1.RELEASE'
-   }
-   repositories {
-      mavenCentral()
-      jcenter()
-   }
-   dependencies {
-      classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-   }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE')
+    }
 }
 
 jar {
-   baseName = 'com-phg-productsapi'
-   version = '0.1.1'
+    baseName = 'com-phg-productsapi'
+    version = '0.1.1'
 }
 
 repositories {
-   mavenCentral()
-   jcenter()
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
-   compile 'org.codehaus.groovy:groovy-all:2.4.5'
-   compile "org.springframework.boot:spring-boot-starter-web"
-   compile "org.springframework.boot:spring-boot-starter-actuator"
-   compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-hateoas'
+
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
 }
 
 task wrapper(type: Wrapper) {
-   gradleVersion = '1.11'
+    gradleVersion = '1.11'
 }
 
 tasks.withType(JavaExec) {
-   systemProperties System.properties
+    systemProperties System.properties
 }
 
 apply from: 'tests.gradle'
