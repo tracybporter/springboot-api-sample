@@ -5,7 +5,6 @@ import org.springframework.boot.test.IntegrationTest
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
-import spock.lang.Ignore
 import spock.lang.Specification
 
 @ContextConfiguration(classes = MainApplication.class, loader = SpringApplicationContextLoader.class)
