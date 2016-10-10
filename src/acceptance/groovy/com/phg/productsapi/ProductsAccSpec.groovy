@@ -54,7 +54,7 @@ class ProductsAccSpec extends Specification {
         response.headers.'Content-Type'.toString() == 'application/json;charset=UTF-8'
         response.data.status == 404
         response.data.error == 'Not Found'
-        response.data.message == "For UPC=${badUpc}, Problem=Not Found"
+        response.data.message.startsWith "For UPC=${badUpc}, Problem="
         response.data.timestamp
 
         where:

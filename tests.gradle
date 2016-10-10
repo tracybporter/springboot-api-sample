@@ -63,7 +63,7 @@ test.finalizedBy runAcceptance
 task startMockServer(type: SpawnProcessTask, dependsOn: 'assemble') {
     description = 'Starting the external mock server'
     def stubbyJar = configurations.mockserver.files.find { it.path.contains 'stubby' }
-    command "java -jar ${stubbyJar.path} -d src/acceptance/resources/sample-mock-server.yml"
+    command "java -jar ${stubbyJar.path} -d src/acceptance/resources/sample-mock-server.yml -s 2222"
     ready 'Jetty successfully started'
     pidLockFileName '.mockserver.pid.lock'
 }

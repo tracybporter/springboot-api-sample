@@ -1,9 +1,12 @@
 -  request:
       method: GET
-      url: /hello-world
+      url: /v1/items
+      query:
+        upc: 786936175271
+        apiKey: "[a-zA-Z0-9]+"
 
    response:
       status: 200
       headers:
          content-type: application/json
-      body: Hello World!
+      file: cannedresponses/totoro.json
