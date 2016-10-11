@@ -13,6 +13,9 @@ This repository evolves sporatically as I get time between contracts. I started 
     1. Preferences -> Build -> Tools -> Gradle - Gradle VM Options (set as shown above)
     1. Right click on MainApplication.groovy and select run.
 
+# Deployment Pipeline
+[Development and Deployment Rhythms](docs/develop-and-deploy.md)
+
 # References
 1. White House API Standards informed response wrapper design: https://github.com/WhiteHouse/api-standards
 1. Request product by UPC API design: http://stackoverflow.com/questions/20381976/rest-api-design-getting-a-resource-through-rest-with-different-parameters-but
