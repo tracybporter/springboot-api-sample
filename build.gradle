@@ -48,3 +48,4 @@ tasks.withType(JavaExec) {
 }
 
 apply from: 'tests.gradle'
+apply from: 'pipeline.gradle'

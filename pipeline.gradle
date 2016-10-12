@@ -1,0 +1,21 @@
+task incrementVersion(type: AppVersionHandler) {
+    fileName = 'src/main/resources/appversion.properties'
+}
+
+class AppVersionHandler extends DefaultTask {
+    String fileName = ''
+
+    @TaskAction
+    def increment() {
+        println 'file name: ' + fileName
+        File file = new File(fileName)
+        String appVersion = file.text
+        List lineValues = appVersion.tokenize('.')
+        int buildNumber = Integer.valueOf(lineValues.pop())
+        lineValues << ++buildNumber
+
+        def writer = new PrintWriter(file)
+        writer.print(lineValues.join('.'))
+        writer.close()
+    }
+}
