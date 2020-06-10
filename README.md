@@ -19,4 +19,4 @@ This repository evolves sporatically as I get time between contracts. I started 
 # References
 1. White House API Standards informed response wrapper design: https://github.com/WhiteHouse/api-standards
 1. Request product by UPC API design: http://stackoverflow.com/questions/20381976/rest-api-design-getting-a-resource-through-rest-with-different-parameters-but
-1. Spring Boot -
+1. Spring Boot
