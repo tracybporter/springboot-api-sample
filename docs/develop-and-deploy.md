@@ -30,4 +30,4 @@
 	1. If all pass and git tag qa-<app-version> does not exist, create and push it.
 
 # WHY?
-Short feedback loops.
+Short feedback loops. That is learn quickly if the last change results in the expected outcome.
